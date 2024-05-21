@@ -6,13 +6,12 @@
       <mat-card-title class='massage-name'>{{message?.name}} :</mat-card-title>
       <mat-card-content class='massage-content'>{{message.payload}}</mat-card-content>
     </mat-card>
-    <ng-container *ngIf='messageAlert$ | async as messageAlert'>
-      <div class='message_alert' *ngIf='messageAlert.payload === true'>
-        {{messageAlert.name}} печатает..
-      </div>
-    </ng-container>
   </div>
-
+  <ng-container *ngIf='messageAlert$ | async as messageAlert'>
+    <div class='message_alert' *ngIf='messageAlert.payload === true'>
+      {{messageAlert.name}} печатает..
+    </div>
+  </ng-container>
   <form class='input-field'>
     <mat-form-field class="example-full-width">
       <mat-label>Напишите сообщение</mat-label>

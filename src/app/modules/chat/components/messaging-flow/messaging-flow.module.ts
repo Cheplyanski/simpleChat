@@ -5,7 +5,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MessageFormModule } from '../message-form/message-form.module';
 
 @NgModule({
   declarations: [MessagingFlowComponent],
@@ -15,7 +14,6 @@ import { MessageFormModule } from '../message-form/message-form.module';
     MatInputModule,
     MatCardModule,
     ReactiveFormsModule,
-    MessageFormModule,
   ],
   exports: [MessagingFlowComponent],
 })
