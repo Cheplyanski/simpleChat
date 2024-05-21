@@ -1,0 +1,23 @@
+<ng-container *ngIf='messages$ | async'></ng-container>
+<ng-container *ngIf='params$ | async'></ng-container>
+<div class='container'>
+  <div class='messages-window'>
+    <mat-card class='message' *ngFor='let message of messages; trackBy: trackByFn'>
+      <mat-card-title class='massage-name'>{{message?.name}} :</mat-card-title>
+      <mat-card-content class='massage-content'>{{message.payload}}</mat-card-content>
+    </mat-card>
+    <ng-container *ngIf='messageAlert$ | async as messageAlert'>
+      <div class='message_alert' *ngIf='messageAlert.payload === true'>
+        {{messageAlert.name}} печатает..
+      </div>
+    </ng-container>
+  </div>
+
+  <form class='input-field'>
+    <mat-form-field class="example-full-width">
+      <mat-label>Напишите сообщение</mat-label>
+      <textarea matInput (blur)='isTyping(false)' (focus)='isTyping(true)' [formControl]="messageContent"></textarea>
+    </mat-form-field>
+    <button mat-raised-button (click)='publishMessage(); $event.preventDefault()'>Отправить</button>
+  </form>
+</div>

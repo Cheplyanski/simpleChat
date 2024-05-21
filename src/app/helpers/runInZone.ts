@@ -1,17 +1,13 @@
 import { NgZone } from '@angular/core';
 import { Observable, OperatorFunction } from 'rxjs';
 
-export const runInZone = (zone: NgZone): OperatorFunction<any, any> => {
+export function runInZone<T>(zone: NgZone): OperatorFunction<T, T> {
   return (source) => {
     return new Observable((observer) => {
-      const onNext = (value: any) => zone.run(() => observer.next(value));
+      const onNext = (value: T) => zone.run(() => observer.next(value));
       const onError = (e: any) => zone.run(() => observer.error(e));
       const onComplete = () => zone.run(() => observer.complete());
-      return source.subscribe({
-        next: onNext,
-        error: onError,
-        complete: onComplete,
-      });
+      return source.subscribe(onNext, onError, onComplete);
     });
   };
-};
+}
