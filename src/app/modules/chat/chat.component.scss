@@ -2,3 +2,10 @@
   display: flex;
   flex-direction: row;
 }
+
+@media(max-width: 992px) {
+:host {
+  display: flex;
+  flex-direction: column;
+  }
+}
